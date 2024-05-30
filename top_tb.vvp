@@ -1,0 +1,138 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_0000017ef2ffaa30 .scope module, "top_tb" "top_tb" 2 5;
+ .timescale -9 -12;
+v0000017ef305d430_0 .var "aluout", 31 0;
+v0000017ef305de30_0 .var "clk", 0 0;
+v0000017ef305db10_0 .net "pc", 31 0, v0000017ef3006590_0;  1 drivers
+v0000017ef305d570_0 .net "pc4", 31 0, L_0000017ef305d750;  1 drivers
+v0000017ef305d6b0_0 .var "pcjump", 0 0;
+v0000017ef305dcf0_0 .net "y", 31 0, L_0000017ef305dc50;  1 drivers
+S_0000017ef2ffabc0 .scope module, "dut" "top" 2 16, 3 5 0, S_0000017ef2ffaa30;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 32 "aluout";
+    .port_info 1 /INPUT 1 "pcjump";
+    .port_info 2 /INPUT 1 "clk";
+    .port_info 3 /OUTPUT 32 "y";
+    .port_info 4 /OUTPUT 32 "pc4";
+    .port_info 5 /OUTPUT 32 "pc";
+v0000017ef305dbb0_0 .net "aluout", 31 0, v0000017ef305d430_0;  1 drivers
+v0000017ef305d4d0_0 .net "clk", 0 0, v0000017ef305de30_0;  1 drivers
+v0000017ef305dd90_0 .net "pc", 31 0, v0000017ef3006590_0;  alias, 1 drivers
+v0000017ef305d610_0 .net "pc4", 31 0, L_0000017ef305d750;  alias, 1 drivers
+v0000017ef305da70_0 .net "pcjump", 0 0, v0000017ef305d6b0_0;  1 drivers
+v0000017ef305d390_0 .net "y", 31 0, L_0000017ef305dc50;  alias, 1 drivers
+S_0000017ef300b680 .scope module, "mux" "mux_2a1" 3 19, 4 1 0, S_0000017ef2ffabc0;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 32 "pc4";
+    .port_info 1 /INPUT 32 "aluout";
+    .port_info 2 /INPUT 1 "pcjump";
+    .port_info 3 /OUTPUT 32 "y";
+v0000017ef2fd3530_0 .net "aluout", 31 0, v0000017ef305d430_0;  alias, 1 drivers
+v0000017ef300b810_0 .net "pc4", 31 0, L_0000017ef305d750;  alias, 1 drivers
+v0000017ef300b8b0_0 .net "pcjump", 0 0, v0000017ef305d6b0_0;  alias, 1 drivers
+v0000017ef300b950_0 .net "y", 31 0, L_0000017ef305dc50;  alias, 1 drivers
+L_0000017ef305dc50 .functor MUXZ 32, L_0000017ef305d750, v0000017ef305d430_0, v0000017ef305d6b0_0, C4<>;
+S_0000017ef3007960 .scope module, "pc_reg" "pc" 3 27, 5 1 0, S_0000017ef2ffabc0;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 32 "input_data";
+    .port_info 1 /INPUT 1 "enable";
+    .port_info 2 /INPUT 32 "reset";
+    .port_info 3 /INPUT 1 "clk";
+    .port_info 4 /OUTPUT 32 "output_data";
+v0000017ef300b9f0_0 .net "clk", 0 0, v0000017ef305de30_0;  alias, 1 drivers
+L_0000017ef305f090 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+v0000017ef3007af0_0 .net "enable", 0 0, L_0000017ef305f090;  1 drivers
+v0000017ef3007b90_0 .net "input_data", 31 0, L_0000017ef305dc50;  alias, 1 drivers
+v0000017ef3007c30_0 .var "mux_output", 31 0;
+v0000017ef3007cd0_0 .net "output_data", 31 0, v0000017ef3006590_0;  alias, 1 drivers
+v0000017ef3006590_0 .var "reg_output", 31 0;
+L_0000017ef305f0d8 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0000017ef3006630_0 .net "reset", 31 0, L_0000017ef305f0d8;  1 drivers
+E_0000017ef30cae80 .event posedge, v0000017ef300b9f0_0;
+E_0000017ef30ca600 .event anyedge, v0000017ef3006630_0, v0000017ef300b950_0;
+S_0000017ef30066d0 .scope module, "sumador" "adder" 3 13, 6 1 0, S_0000017ef2ffabc0;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 32 "pc";
+    .port_info 1 /OUTPUT 32 "pc4";
+L_0000017ef305f048 .functor BUFT 1, C4<00000000000000000000000000000100>, C4<0>, C4<0>, C4<0>;
+v0000017ef305d110_0 .net/2u *"_ivl_0", 31 0, L_0000017ef305f048;  1 drivers
+v0000017ef305d1b0_0 .net "pc", 31 0, v0000017ef3006590_0;  alias, 1 drivers
+v0000017ef305ded0_0 .net "pc4", 31 0, L_0000017ef305d750;  alias, 1 drivers
+L_0000017ef305d750 .arith/sum 32, v0000017ef3006590_0, L_0000017ef305f048;
+    .scope S_0000017ef3007960;
+T_0 ;
+    %wait E_0000017ef30ca600;
+    %load/vec4 v0000017ef3006630_0;
+    %cmpi/ne 0, 0, 32;
+    %jmp/0xz  T_0.0, 4;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0000017ef3007c30_0, 0, 32;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0000017ef3007b90_0;
+    %store/vec4 v0000017ef3007c30_0, 0, 32;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0000017ef3007960;
+T_1 ;
+    %wait E_0000017ef30cae80;
+    %load/vec4 v0000017ef3007af0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %load/vec4 v0000017ef3007c30_0;
+    %assign/vec4 v0000017ef3006590_0, 0;
+T_1.0 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0000017ef2ffaa30;
+T_2 ;
+    %delay 10000, 0;
+    %load/vec4 v0000017ef305de30_0;
+    %inv;
+    %store/vec4 v0000017ef305de30_0, 0, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0000017ef2ffaa30;
+T_3 ;
+    %vpi_call 2 30 "$dumpfile", "top_tb.vcd" {0 0 0};
+    %vpi_call 2 31 "$dumpvars", 32'sb00000000000000000000000000000000, S_0000017ef2ffaa30 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000017ef305de30_0, 0, 1;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0000017ef305d430_0, 0, 32;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000017ef305d6b0_0, 0, 1;
+    %delay 10000, 0;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0000017ef305d430_0, 0, 32;
+    %delay 10000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000017ef305d6b0_0, 0, 1;
+    %delay 100000, 0;
+    %vpi_call 2 39 "$finish" {0 0 0};
+    %end;
+    .thread T_3;
+    .scope S_0000017ef2ffaa30;
+T_4 ;
+    %wait E_0000017ef30cae80;
+    %vpi_call 2 44 "$display", "Time=%0t, y=%h, pc4=%h, pc=%h", $time, v0000017ef305dcf0_0, v0000017ef305d570_0, v0000017ef305db10_0 {0 0 0};
+    %jmp T_4;
+    .thread T_4;
+# The file index is used to find the file name in the following table.
+:file_names 7;
+    "N/A";
+    "<interactive>";
+    "top_tb.v";
+    "./top.v";
+    "./mux_2a1.v";
+    "./pc.v";
+    "./adder.v";

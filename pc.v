@@ -27,4 +27,3 @@ module pc (
     assign output_data = reg_output;
 
 endmodule
-

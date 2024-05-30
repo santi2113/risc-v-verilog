@@ -1,4 +1,4 @@
-`include "defination.v"
+
 module control(
     input [31:0] instr,
     output wire Immreg,

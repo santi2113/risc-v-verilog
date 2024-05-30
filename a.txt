@@ -1,0 +1,71 @@
+`include "top.v"
+
+module top_tb;
+    // Variables para las entradas del módulo top
+    reg [31:0] pc;
+    reg [31:0] aluout;
+    reg pcjump;
+    
+    // Variable para la salida del módulo top
+    wire [31:0] y;
+    
+    // Instancia del módulo top
+    top uut (
+        .pc(pc),
+        .aluout(aluout),
+        .pcjump(pcjump),
+        .y(y)
+    );
+    
+    // Procedimiento de prueba
+    initial begin
+        $dumpfile("top_tb.vcd");
+        $dumpvars(0, top_tb);
+        // Monitor de señales
+        $monitor("Time=%0t | pc=%h | aluout=%h | pcjump=%b | y=%h", $time, pc, aluout, pcjump, y);
+
+        // Inicialización de señales
+        pc = 32'h00000000;
+        aluout = 32'h00000000;
+        pcjump = 1'b0;
+        
+        // Test 1: pcjump = 0, se espera que y = pc + 4
+        #10;
+        pc = 32'h00000004;
+        pcjump = 1'b0;
+        #10;
+        if (y !== 32'h00000008) $display("Test 1 failed");
+        
+        // Test 2: pcjump = 1, se espera que y = aluout
+        #10;
+        aluout = 32'h00000010;
+        pcjump = 1'b1;
+        #10;
+        if (y !== 32'h00000010) $display("Test 2 failed");
+        
+        // Test 3: pcjump = 0, se espera que y = pc + 4
+        #10;
+        pc = y; // Actualizar pc con el valor actual de y
+        pcjump = 1'b0;
+        #10;
+        if (y !== 32'h00000014) $display("Test 3 failed");
+        
+        // Test 4: pcjump = 1, se espera que y = aluout
+        #10;
+        aluout = 32'h00000064;
+        pcjump = 1'b1;
+        #10;
+        if (y !== 32'h00000064) $display("Test 4 failed");
+
+        // Test 5: pcjump = 0, se espera que y = pc + 4
+        #10;
+        pc = y; // Actualizar pc con el valor actual de y
+        pcjump = 1'b0;
+        #10;
+        if (y !== 32'h00000068) $display("Test 5 failed");
+        
+        // Finalizar la simulación
+        #10;
+        $finish;
+    end
+endmodule

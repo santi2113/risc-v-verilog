@@ -1,0 +1,181 @@
+$date
+	Wed May 29 18:06:54 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module top_tb $end
+$var wire 32 ! y [31:0] $end
+$var wire 32 " pc4 [31:0] $end
+$var wire 32 # pc [31:0] $end
+$var reg 32 $ aluout [31:0] $end
+$var reg 1 % clk $end
+$var reg 1 & pcjump $end
+$scope module dut $end
+$var wire 32 ' aluout [31:0] $end
+$var wire 1 % clk $end
+$var wire 1 & pcjump $end
+$var wire 32 ( y [31:0] $end
+$var wire 32 ) pc4 [31:0] $end
+$var wire 32 * pc [31:0] $end
+$scope module mux $end
+$var wire 32 + aluout [31:0] $end
+$var wire 1 & pcjump $end
+$var wire 32 , y [31:0] $end
+$var wire 32 - pc4 [31:0] $end
+$upscope $end
+$scope module pc_reg $end
+$var wire 1 % clk $end
+$var wire 1 . enable $end
+$var wire 32 / input_data [31:0] $end
+$var wire 32 0 reset [31:0] $end
+$var wire 32 1 output_data [31:0] $end
+$var reg 32 2 mux_output [31:0] $end
+$var reg 32 3 reg_output [31:0] $end
+$upscope $end
+$scope module sumador $end
+$var wire 32 4 pc [31:0] $end
+$var wire 32 5 pc4 [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx 5
+bx 4
+bx 3
+b0 2
+bx 1
+b0 0
+b0 /
+1.
+bx -
+b0 ,
+b0 +
+bx *
+bx )
+b0 (
+b0 '
+1&
+0%
+b0 $
+bx #
+bx "
+b0 !
+$end
+#10000
+b100 "
+b100 )
+b100 -
+b100 5
+b0 #
+b0 *
+b0 1
+b0 3
+b0 4
+1%
+#20000
+b100 2
+b100 !
+b100 (
+b100 ,
+b100 /
+0&
+0%
+#30000
+b1000 2
+b1000 !
+b1000 (
+b1000 ,
+b1000 /
+b1000 "
+b1000 )
+b1000 -
+b1000 5
+b100 #
+b100 *
+b100 1
+b100 3
+b100 4
+1%
+#40000
+0%
+#50000
+b1100 2
+b1100 !
+b1100 (
+b1100 ,
+b1100 /
+b1100 "
+b1100 )
+b1100 -
+b1100 5
+b1000 #
+b1000 *
+b1000 1
+b1000 3
+b1000 4
+1%
+#60000
+0%
+#70000
+b10000 2
+b10000 !
+b10000 (
+b10000 ,
+b10000 /
+b10000 "
+b10000 )
+b10000 -
+b10000 5
+b1100 #
+b1100 *
+b1100 1
+b1100 3
+b1100 4
+1%
+#80000
+0%
+#90000
+b10100 2
+b10100 !
+b10100 (
+b10100 ,
+b10100 /
+b10100 "
+b10100 )
+b10100 -
+b10100 5
+b10000 #
+b10000 *
+b10000 1
+b10000 3
+b10000 4
+1%
+#100000
+0%
+#110000
+b11000 2
+b11000 !
+b11000 (
+b11000 ,
+b11000 /
+b11000 "
+b11000 )
+b11000 -
+b11000 5
+b10100 #
+b10100 *
+b10100 1
+b10100 3
+b10100 4
+1%
+#120000
+0%
