@@ -1,4 +1,4 @@
-module mux_2a1 (
+module mux1 (
     input [31:0] pc4,
     input [31:0] aluout,
     input pcjump,

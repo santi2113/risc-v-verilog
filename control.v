@@ -1,8 +1,8 @@
 
 module control(
     input [31:0] instr,
-    output wire Immreg,
-    output wire dmwenable,
+    output wire immreg,
+    output wire dmwen,
     output wire rfwenable,
     output wire brinst,
     output wire jaljalr,
@@ -10,8 +10,8 @@ module control(
     output wire useDM
 );
 
-assign Immreg = (instr[6:0] == 7'b0110011) ? 1'b0 : 1'b1;
-assign dmwenable = (instr[6:0] == 7'b0100011) ? 1'b1 : 1'b0;
+assign immreg = (instr[6:0] == 7'b0110011) ? 1'b0 : 1'b1;
+assign dmwen = (instr[6:0] == 7'b0100011) ? 1'b1 : 1'b0;
 assign brinst = (instr[6:0] == 7'b1100011) ? 1'b1 : 1'b0;
 assign jaljalr = (instr[6:0] == 7'b1101111) ? 1'b1 : ((instr[6:0] == 7'b1100111) ? 1'b1 : 1'b0);
 assign rfwenable = ~((instr[6:0] == 7'b0100011) | (instr[6:0] == 7'b1100011));

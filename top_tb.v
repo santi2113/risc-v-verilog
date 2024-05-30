@@ -1,47 +1,71 @@
-`timescale 1ns / 1ps
 `include "top.v"
+`timescale 1ns/1ps
 
+module tb_top();
 
-module top_tb;
-
-    // Parámetros de entrada
-    reg [31:0] aluout;
-    reg pcjump;
+    // Inputs
     reg clk;
 
-    // Parámetros de salida
-    wire [31:0] y, pc4, pc;
+    // Outputs
+    wire [31:0] y, x, immed, pc4, aluout, pc;
+    wire [31:0] inst, imm, rs1Data, rs2Data, dmout, res;
+    wire [2:0] func3;
+    wire [4:0] rs1, rs2, rd;
+    wire [6:0] func7, opcode;
+    wire immreg, pcjump, rs1pc;
+    wire dmwen, rfwenable, brinst, jaljalr;
+    wire [1:0] wbsel;
+    wire useDM;
 
-    // Instanciación del módulo bajo prueba
-    top dut (
-        .aluout(aluout),
-        .pcjump(pcjump),
+    // Instantiate the Unit Under Test (UUT)
+    top uut (
         .clk(clk),
         .y(y),
+        .x(x),
+        .immed(immed),
         .pc4(pc4),
-        .pc(pc)
+        .aluout(aluout),
+        .pc(pc),
+        .inst(inst),
+        .imm(imm),
+        .rs1Data(rs1Data),
+        .rs2Data(rs2Data),
+        .dmout(dmout),
+        .res(res),
+        .func3(func3),
+        .rs1(rs1),
+        .rs2(rs2),
+        .rd(rd),
+        .func7(func7),
+        .opcode(opcode),
+        .immreg(immreg),
+        .pcjump(pcjump),
+        .rs1pc(rs1pc),
+        .dmwen(dmwen),
+        .rfwenable(rfwenable),
+        .brinst(brinst),
+        .jaljalr(jaljalr),
+        .wbsel(wbsel),
+        .useDM(useDM)
     );
 
     // Clock generation
-    always #10 clk = ~clk;
-
-    // Inicialización de las señales de entrada
     initial begin
-        $dumpfile("top_tb.vcd");
-        $dumpvars(0, top_tb);
         clk = 0;
-        aluout = 32'h00000000;
-        pcjump = 1'b1;
-
-        // Ejemplo de prueba
-        #10 aluout = 32'h00000000; // Simula una salida de ALU
-        #10 pcjump = 1'b0; // Simula un salto de PC
-        #100 $finish; // Finaliza la simulación
+        forever #5 clk = ~clk; // 10ns period, 100MHz clock
     end
 
-    // Monitoreo de las señales de salida
-    always @(posedge clk) begin
-        $display("Time=%0t, y=%h, pc4=%h, pc=%h", $time, y, pc4, pc);
+    // Stimulus process
+    initial begin
+        // Initialize inputs
+        // You can add more stimulus as needed
+        #100; // Run for some time
+        $stop;
+    end
+
+    initial begin
+        $monitor("Time: %0t | clk: %b | pc: %h | inst: %h | rs1: %d | rs2: %d | rd: %d | func3: %b | func7: %b | opcode: %b | imm: %h | rs1Data: %h | rs2Data: %h | aluout: %h | dmout: %h | res: %h",
+                 $time, clk, pc, inst, rs1, rs2, rd, func3, func7, opcode, imm, rs1Data, rs2Data, aluout, dmout, res);
     end
 
 endmodule
